@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+/*
+ * Include the component library's source so Tailwind sees the utility classes used
+ * inside @scottmallin/vue (they live in node_modules and would otherwise be skipped).
+ */
+@source '../../../../../packages/vue/src';
+
+/*
+ * Adopt the design tokens as Tailwind theme values. `@theme inline` inlines the
+ * `var(--ds-*)` reference into the generated utilities instead of emitting a fixed
+ * value — so `bg-action-primary` resolves to the *current* theme's custom property,
+ * and flipping [data-theme] on <html> re-themes everything live.
+ *
+ * The --ds-* custom properties themselves come from @scottmallin/tokens/css, injected
+ * globally by the Nuxt module.
+ */
+@theme inline {
+  /* action */
+  --color-action-primary: var(--ds-color-action-primary-bg);
+  --color-action-primary-hover: var(--ds-color-action-primary-bg-hover);
+  --color-action-primary-fg: var(--ds-color-action-primary-fg);
+  --color-action-secondary: var(--ds-color-action-secondary-bg);
+  --color-action-secondary-hover: var(--ds-color-action-secondary-bg-hover);
+  --color-action-secondary-fg: var(--ds-color-action-secondary-fg);
+  --color-action-danger: var(--ds-color-action-danger-bg);
+  --color-action-danger-hover: var(--ds-color-action-danger-bg-hover);
+  --color-action-danger-fg: var(--ds-color-action-danger-fg);
+
+  /* surface + foreground */
+  --color-surface-base: var(--ds-color-surface-base);
+  --color-surface-raised: var(--ds-color-surface-raised);
+  --color-surface-overlay: var(--ds-color-surface-overlay);
+  --color-surface-border: var(--ds-color-surface-border);
+  --color-fg-default: var(--ds-color-text-default);
+  --color-fg-muted: var(--ds-color-text-muted);
+  --color-fg-on-action: var(--ds-color-text-on-action);
+
+  /* feedback */
+  --color-feedback-info: var(--ds-color-feedback-info-bg);
+  --color-feedback-info-fg: var(--ds-color-feedback-info-fg);
+  --color-feedback-success: var(--ds-color-feedback-success-bg);
+  --color-feedback-success-fg: var(--ds-color-feedback-success-fg);
+  --color-feedback-warning: var(--ds-color-feedback-warning-bg);
+  --color-feedback-warning-fg: var(--ds-color-feedback-warning-fg);
+  --color-feedback-danger: var(--ds-color-feedback-danger-bg);
+  --color-feedback-danger-fg: var(--ds-color-feedback-danger-fg);
+
+  /* scrim */
+  --color-scrim: var(--ds-color-scrim);
+
+  /* radius */
+  --radius-control: var(--ds-radius-control);
+  --radius-card: var(--ds-radius-card);
+  --radius-badge: var(--ds-radius-badge);
+  --radius-modal: var(--ds-radius-modal);
+
+  /* spacing */
+  --spacing-control-sm: var(--ds-spacing-control-sm);
+  --spacing-control-md: var(--ds-spacing-control-md);
+  --spacing-control-lg: var(--ds-spacing-control-lg);
+  --spacing-card: var(--ds-spacing-card-padding);
+  --spacing-card-gap: var(--ds-spacing-card-gap);
+  --spacing-stack-sm: var(--ds-spacing-stack-sm);
+  --spacing-stack-md: var(--ds-spacing-stack-md);
+
+  /* shadow */
+  --shadow-flat: var(--ds-shadow-elevation-flat);
+  --shadow-raised: var(--ds-shadow-elevation-raised);
+  --shadow-overlay: var(--ds-shadow-elevation-overlay);
+}

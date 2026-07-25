@@ -1,0 +1,17 @@
+{
+  "spacing": {
+    "control": {
+      "sm": { "value": "0.5rem", "comment": "Compact control padding (sm buttons/inputs)." },
+      "md": { "value": "0.75rem", "comment": "Default control padding." },
+      "lg": { "value": "1rem", "comment": "Roomy control padding (lg buttons/inputs)." }
+    },
+    "card": {
+      "padding": { "value": "1.5rem" },
+      "gap": { "value": "1rem" }
+    },
+    "stack": {
+      "sm": { "value": "0.5rem" },
+      "md": { "value": "1rem" }
+    }
+  }
+}

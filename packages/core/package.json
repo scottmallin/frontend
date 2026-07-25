@@ -1,0 +1,28 @@
+{
+  "name": "@scottmallin/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Headless primitives + the component registry. registry.json is the single source of truth for both lint enforcement and generated prop types.",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./registry": "./registry/registry.json",
+    "./registry/schema": "./registry/registry.schema.json",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "registry", "src"],
+  "scripts": {
+    "build": "node scripts/generate-types.mjs && tsc",
+    "typecheck": "node scripts/generate-types.mjs && tsc --noEmit",
+    "lint": "eslint .",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "typescript": "^5.8.0"
+  }
+}

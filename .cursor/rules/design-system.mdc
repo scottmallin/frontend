@@ -1,0 +1,47 @@
+---
+description: Build and modify components against the registry and the lint rules — never freehand markup, colours, or props.
+globs:
+  - "packages/**"
+  - "apps/**"
+  - "examples/**"
+alwaysApply: true
+---
+
+# Design system rules for AI agents
+
+This repo is **registry-governed**. `packages/core/registry/registry.json` is the single
+source of truth for every component's public API. Your job is to work *through* it, not
+around it. The same rules are enforced by CI, so freehanding will fail the build.
+
+## Before you add or change a component
+
+1. Read `packages/core/registry/registry.json`. It declares each component's props,
+   allowed enum values, slots, consumable tokens, and a11y contract.
+2. If you need a **new prop or a new enum value**, edit `registry.json` FIRST. The prop
+   types in `packages/core/src/generated/registry-types.ts` are generated from it
+   (`scripts/generate-types.mjs`) — do not hand-edit generated files.
+3. Only then implement the Vue SFC in `packages/vue`, typing `defineProps` with the
+   generated `*Props` type (e.g. `ButtonProps`).
+
+## Hard rules (enforced by `@scottmallin/eslint-plugin-registry`)
+
+- **No raw hex colours** outside `packages/tokens` → `registry/no-raw-hex-color`.
+  Use a token-backed utility (`bg-action-primary`) or a `--ds-*` custom property.
+- **No arbitrary Tailwind values** (`bg-[#…]`, `p-[13px]`) → `registry/no-arbitrary-tailwind`.
+  Use the semantic utilities defined in `apps/playground/app/assets/css/main.css`.
+- **No unregistered props or out-of-range enum values** on registered components
+  (`<Button variant="ghost">`) → `registry/registry-only-props`.
+
+## Styling
+
+Colours, radius, spacing, and shadow come only from token-backed utilities. To add a new
+visual value, add a token in `packages/tokens/src/tokens`, expose it via `@theme inline`
+in the playground CSS, then use the resulting utility. Never inline a colour.
+
+## Definition of done
+
+- `pnpm build` is green (includes registry → types codegen and `vue-tsc`).
+- `pnpm lint` is green.
+- `pnpm lint:expect-violations` is green (the bad examples still correctly fail).
+- If you added a component, it appears in `registry.json`, has a Vue wrapper, and is
+  rendered in `apps/playground`.

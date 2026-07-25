@@ -1,0 +1,17 @@
+node_modules
+dist
+.turbo
+.nuxt
+.output
+.env
+.env.*
+!.env.example
+*.local
+*.log
+.DS_Store
+
+# Generated design-token artifacts (rebuilt by `pnpm build`)
+packages/tokens/dist
+
+# Generated registry prop types (rebuilt by `pnpm build`)
+packages/core/src/generated/registry-types.ts

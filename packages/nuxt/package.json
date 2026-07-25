@@ -1,0 +1,27 @@
+{
+  "name": "@scottmallin/nuxt",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Thin Nuxt module that auto-imports the @scottmallin/vue components and registers the design-token CSS.",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/module.ts",
+    "./package.json": "./package.json"
+  },
+  "files": ["src"],
+  "scripts": {
+    "build": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint .",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "dependencies": {
+    "@nuxt/kit": "^4.5.0",
+    "@scottmallin/tokens": "workspace:*",
+    "@scottmallin/vue": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  }
+}

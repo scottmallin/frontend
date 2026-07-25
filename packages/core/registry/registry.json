@@ -1,0 +1,171 @@
+{
+  "components": [
+    {
+      "name": "Button",
+      "category": "primitive",
+      "status": "stable",
+      "description": "Primary interactive trigger. Headless behaviour in core, styled via Vue wrapper.",
+      "props": [
+        {
+          "name": "variant",
+          "type": "enum",
+          "required": true,
+          "default": "primary",
+          "allowedValues": ["primary", "secondary", "danger"],
+          "description": "Visual weight/intent — maps to tonal token set, not raw colour."
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "default": "md",
+          "allowedValues": ["sm", "md", "lg"]
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": false
+        }
+      ],
+      "slots": [
+        { "name": "default", "description": "Button label content." },
+        { "name": "icon-left", "description": "Optional leading icon." }
+      ],
+      "tokens": ["color.action.*", "spacing.control.*", "radius.control"],
+      "a11y": {
+        "role": "button",
+        "notes": "Disabled state must also set aria-disabled, not just the native attribute."
+      }
+    },
+    {
+      "name": "Input",
+      "category": "primitive",
+      "status": "stable",
+      "description": "Single-line text control. Native input under the hood; aria wiring from core.",
+      "props": [
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false,
+          "default": "",
+          "description": "Two-way bound value (v-model)."
+        },
+        {
+          "name": "type",
+          "type": "enum",
+          "required": false,
+          "default": "text",
+          "allowedValues": ["text", "email", "password", "search"]
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "default": "md",
+          "allowedValues": ["sm", "md", "lg"]
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "invalid",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "Sets aria-invalid and the error affordance."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": false
+        }
+      ],
+      "slots": [],
+      "tokens": ["color.surface.*", "color.text.*", "spacing.control.*", "radius.control"],
+      "a11y": {
+        "role": "textbox",
+        "notes": "invalid must set aria-invalid=\"true\"; the control is labelled by an external <label for>."
+      }
+    },
+    {
+      "name": "Card",
+      "category": "composite",
+      "status": "stable",
+      "description": "Surface container with header/body/footer regions and tiered elevation.",
+      "props": [
+        {
+          "name": "elevation",
+          "type": "enum",
+          "required": false,
+          "default": "raised",
+          "allowedValues": ["flat", "raised", "overlay"]
+        }
+      ],
+      "slots": [
+        { "name": "header" },
+        { "name": "default" },
+        { "name": "footer" }
+      ],
+      "tokens": ["color.surface.*", "shadow.elevation.*", "spacing.card.*", "radius.card"]
+    },
+    {
+      "name": "Badge",
+      "category": "primitive",
+      "status": "stable",
+      "description": "Compact status/label pill mapped to the feedback token set.",
+      "props": [
+        {
+          "name": "variant",
+          "type": "enum",
+          "required": false,
+          "default": "neutral",
+          "allowedValues": ["neutral", "info", "success", "warning", "danger"],
+          "description": "Semantic tone — maps to color.feedback.*, never a raw colour."
+        }
+      ],
+      "slots": [{ "name": "default", "description": "Badge label content." }],
+      "tokens": ["color.feedback.*", "color.surface.*", "radius.badge", "spacing.control.*"]
+    },
+    {
+      "name": "Modal",
+      "category": "composite",
+      "status": "experimental",
+      "description": "Overlay dialog. Focus/escape behaviour comes from the core controller; markup from the Vue wrapper.",
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": true,
+          "default": false,
+          "description": "Controls visibility. Paired with an update:open event for v-model."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "description": "Accessible dialog title; wired to aria-labelledby."
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "default": "md",
+          "allowedValues": ["sm", "md", "lg"]
+        }
+      ],
+      "slots": [
+        { "name": "default", "description": "Dialog body." },
+        { "name": "footer", "description": "Action row." }
+      ],
+      "tokens": ["color.surface.*", "shadow.elevation.overlay", "radius.modal", "spacing.card.*"],
+      "a11y": {
+        "role": "dialog",
+        "notes": "Sets aria-modal=\"true\" and aria-labelledby to the title; focus is trapped while open and restored on close."
+      }
+    }
+  ]
+}

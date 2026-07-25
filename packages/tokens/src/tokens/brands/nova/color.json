@@ -1,0 +1,39 @@
+{
+  "color": {
+    "action": {
+      "primary": {
+        "bg": { "value": "#3B5BDB" },
+        "bg-hover": { "value": "#364FC7" },
+        "fg": { "value": "#FFFFFF" }
+      },
+      "secondary": {
+        "bg": { "value": "#20242E" },
+        "bg-hover": { "value": "#2A2F3B" },
+        "fg": { "value": "#C9D2EA" }
+      },
+      "danger": {
+        "bg": { "value": "#E03131" },
+        "bg-hover": { "value": "#C92A2A" },
+        "fg": { "value": "#FFFFFF" }
+      }
+    },
+    "surface": {
+      "base": { "value": "#0B0C0E" },
+      "raised": { "value": "#15171B" },
+      "overlay": { "value": "#1D2026" },
+      "border": { "value": "#2A2E37" }
+    },
+    "text": {
+      "default": { "value": "#F5F6F8" },
+      "muted": { "value": "#A5ADBB" },
+      "on-action": { "value": "#FFFFFF" }
+    },
+    "scrim": { "value": "rgba(0, 0, 0, 0.6)" },
+    "feedback": {
+      "info": { "bg": { "value": "#16324A" }, "fg": { "value": "#A9D2F5" } },
+      "success": { "bg": { "value": "#123521" }, "fg": { "value": "#8CE0A9" } },
+      "warning": { "bg": { "value": "#3A3216" }, "fg": { "value": "#F2D479" } },
+      "danger": { "bg": { "value": "#3A1A1A" }, "fg": { "value": "#F3A9A9" } }
+    }
+  }
+}

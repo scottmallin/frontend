@@ -1,0 +1,25 @@
+{
+  "name": "@scottmallin/eslint-plugin-registry",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Local ESLint plugin enforcing the component registry: no raw hex, no arbitrary Tailwind, registry-only props (incl. enum allowedValues).",
+  "license": "MIT",
+  "main": "index.js",
+  "files": ["index.js", "lib", "rules"],
+  "scripts": {
+    "test": "node --test",
+    "lint": "eslint .",
+    "clean": "node -e \"0\""
+  },
+  "dependencies": {
+    "@scottmallin/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "eslint": ">=9"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.0",
+    "eslint": "^10.0.0",
+    "vue-eslint-parser": "^10.4.1"
+  }
+}

@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node 26
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # tokens → core (registry codegen + tsc) → vue (vue-tsc) → nuxt → playground
+      - name: Build
+        run: pnpm build
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Lint (must be clean)
+        run: pnpm lint
+
+      - name: Unit tests (RuleTester)
+        run: pnpm test
+
+      # Green here means the governance rules correctly REJECT the bad examples.
+      # A non-zero ESLint result on examples/bad is the passing condition.
+      - name: Governance rules reject bad examples
+        run: pnpm lint:expect-violations

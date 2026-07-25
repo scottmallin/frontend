@@ -1,0 +1,28 @@
+{
+  "name": "@scottmallin/playground",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Nuxt demo app that renders the design system in both brand themes — and the real target the governance lint rules run against.",
+  "license": "MIT",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "typecheck": "nuxt typecheck",
+    "lint": "eslint .",
+    "clean": "node -e \"require('fs').rmSync('.nuxt',{recursive:true,force:true});require('fs').rmSync('.output',{recursive:true,force:true})\""
+  },
+  "dependencies": {
+    "@scottmallin/nuxt": "workspace:*",
+    "@scottmallin/tokens": "workspace:*",
+    "@scottmallin/vue": "workspace:*",
+    "vue": "^3.5.40"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "nuxt": "^4.5.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.8.0",
+    "vue-tsc": "^3.0.0"
+  }
+}

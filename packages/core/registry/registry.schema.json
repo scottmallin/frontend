@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Component Registry Entry",
+  "type": "object",
+  "required": ["name", "category", "status", "props", "tokens"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[A-Z][a-zA-Z0-9]*$",
+      "description": "PascalCase component name, must match the exported component."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["primitive", "composite"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["experimental", "stable", "deprecated"]
+    },
+    "description": { "type": "string" },
+    "props": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "required"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["string", "number", "boolean", "enum", "slot-content"]
+          },
+          "required": { "type": "boolean" },
+          "default": {},
+          "allowedValues": {
+            "type": "array",
+            "description": "Required when type is 'enum' — e.g. variant/size options.",
+            "items": { "type": "string" }
+          },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "tokens": {
+      "type": "array",
+      "description": "Design token references this component is allowed to consume — used for traceability and to scope the no-raw-hex exemption.",
+      "items": { "type": "string" }
+    },
+    "a11y": {
+      "type": "object",
+      "properties": {
+        "role": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

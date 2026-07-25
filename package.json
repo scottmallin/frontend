@@ -1,0 +1,37 @@
+{
+  "name": "design-system-open-source",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A slimmed, sanitised portfolio design-system monorepo demonstrating registry-governed component architecture.",
+  "license": "MIT",
+  "author": "Scott Mallin",
+  "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=24"
+  },
+  "volta": {
+    "node": "26.5.0",
+    "pnpm": "10.33.4"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "lint:expect-violations": "node tooling/eslint-plugin-registry/scripts/expect-violations.mjs",
+    "test": "turbo run test",
+    "dev": "pnpm --filter @scottmallin/playground dev",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.0",
+    "@scottmallin/eslint-plugin-registry": "workspace:*",
+    "@types/node": "^26.0.0",
+    "eslint": "^10.0.0",
+    "eslint-plugin-vue": "^10.0.0",
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.65.0",
+    "vue-eslint-parser": "^10.4.1"
+  }
+}

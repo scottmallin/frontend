@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    // The module ships as source (Nuxt loads it via jiti) and emits nothing, so
+    // declaration emit is off — which also avoids TS2742 on the defineNuxtModule
+    // return type, whose inferred shape references @nuxt/schema internals.
+    "declaration": false,
+    "declarationMap": false,
+    "types": ["node"]
+  },
+  "include": ["src"]
+}
