@@ -77,3 +77,12 @@ set or the registry instead. That is the whole point of the system.
 - Don't hand-edit `src/generated/**`.
 - Don't "fix" `examples/bad/**` — those files fail on purpose and a CI job asserts it.
 - Don't reach for `style="…"` colours or `class="bg-[#…]"` to move fast; it won't pass.
+
+## Skills
+
+Reusable, tool-agnostic procedures live in `skills/` (plain `SKILL.md` files any agent can
+read). Follow the matching one when its task comes up:
+
+- [`skills/figma-audit`](skills/figma-audit/SKILL.md) — audit a Figma design for
+  design-to-code readiness. Sorts findings into structural **blockers** vs **ingest work**
+  (a new palette/component is normal input, never a violation).
