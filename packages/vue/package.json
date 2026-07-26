@@ -1,16 +1,26 @@
 {
   "name": "@scottmallin/vue",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
   "type": "module",
   "description": "Vue 3 SFC wrappers around the core primitives. Props are typed from the registry; styling is token-backed Tailwind utilities only — no hardcoded values.",
   "license": "MIT",
+  "author": "Scott Mallin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottmallin/frontend.git",
+    "directory": "packages/vue"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./components/*": "./src/components/*",
     "./package.json": "./package.json"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "scripts": {
     "build": "vue-tsc --noEmit -p tsconfig.json",
     "typecheck": "vue-tsc --noEmit -p tsconfig.json",
