@@ -1,15 +1,25 @@
 {
   "name": "@scottmallin/nuxt",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
   "type": "module",
   "description": "Thin Nuxt module that auto-imports the @scottmallin/vue components and registers the design-token CSS.",
   "license": "MIT",
+  "author": "Scott Mallin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottmallin/frontend.git",
+    "directory": "packages/nuxt"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": "./src/module.ts",
     "./package.json": "./package.json"
   },
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "scripts": {
     "build": "tsc --noEmit -p tsconfig.json",
     "typecheck": "tsc --noEmit -p tsconfig.json",

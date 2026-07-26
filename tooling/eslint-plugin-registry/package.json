@@ -1,11 +1,15 @@
 {
   "name": "@scottmallin/eslint-plugin-registry",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "Local ESLint plugin enforcing the component registry: no raw hex, no arbitrary Tailwind, registry-only props (incl. enum allowedValues).",
   "license": "MIT",
   "main": "index.js",
-  "files": ["index.js", "lib", "rules"],
+  "files": [
+    "index.js",
+    "lib",
+    "rules"
+  ],
   "scripts": {
     "test": "node --test",
     "lint": "eslint .",

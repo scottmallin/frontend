@@ -1,20 +1,33 @@
 {
   "name": "@scottmallin/tokens",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
   "type": "module",
   "description": "DTCG design tokens for the nova & ember demo modes, built via Style Dictionary to CSS custom properties + a NativeWind-compatible preset.",
   "license": "MIT",
+  "author": "Scott Mallin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottmallin/frontend.git",
+    "directory": "packages/tokens"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     "./css": "./dist/css/tokens.css",
     "./nativewind": "./dist/nativewind/preset.cjs",
     "./package.json": "./package.json"
   },
-  "files": ["dist", "src", "lib"],
+  "files": [
+    "dist",
+    "src",
+    "lib"
+  ],
   "scripts": {
     "build": "node scripts/build-tokens.mjs",
     "test": "node --test",
     "lint": "eslint .",
+    "prepack": "node scripts/build-tokens.mjs",
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
   },
   "devDependencies": {

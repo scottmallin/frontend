@@ -21,9 +21,13 @@
     "lint:expect-violations": "node tooling/eslint-plugin-registry/scripts/expect-violations.mjs",
     "test": "turbo run test",
     "dev": "pnpm --filter @scottmallin/playground dev",
-    "clean": "turbo run clean"
+    "clean": "turbo run clean",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm -r publish --access public"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.0",
     "@eslint/js": "^10.0.0",
     "@scottmallin/eslint-plugin-registry": "workspace:*",
     "@types/node": "^26.0.0",
