@@ -14,10 +14,15 @@ file per set of changes that should ship in a release.
    version (they're a `fixed` group), and updates changelogs. Commit the result.
 
 3. **Publish:** `pnpm release`
-   Runs `pnpm -r publish`, which rebuilds each package (`prepack`), rewrites the
-   internal `workspace:*` deps to the real version, and pushes to npm. Use pnpm — **not**
-   `changeset publish`/`npm publish`, which leave `workspace:*` in the tarball and produce
-   packages that can't be installed.
+   Runs `scripts/release.mjs` → `pnpm -r publish`, which rebuilds each package (`prepack`),
+   rewrites the internal `workspace:*` deps to the real version, and pushes to npm. Use
+   pnpm — **not** `changeset publish`/`npm publish`, which leave `workspace:*` in the
+   tarball and produce packages that can't be installed. Add `-- --dry-run` to rehearse.
+
+   Requires an npm token that **bypasses 2FA** (granular access token with read+write, or a
+   classic automation token) in `~/.npmrc`; a plain `npm login` token still demands an
+   interactive OTP and will 403. The wrapper also works around a Volta-on-Windows quirk
+   where pnpm can't find `npm` — see the comment in `scripts/release.mjs`.
 
 The four published packages — `@scottmallin/core`, `@scottmallin/tokens`,
 `@scottmallin/vue`, `@scottmallin/nuxt` — always share a version number. The playground
