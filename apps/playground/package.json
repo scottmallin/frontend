@@ -1,6 +1,6 @@
 {
   "name": "@scottmallin/playground",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "description": "Nuxt demo app that renders the design system in both brand themes — and the real target the governance lint rules run against.",

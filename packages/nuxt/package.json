@@ -1,6 +1,6 @@
 {
   "name": "@scottmallin/nuxt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Thin Nuxt module that auto-imports the @scottmallin/vue components and registers the design-token CSS.",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "@scottmallin/eslint-plugin-registry",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "Local ESLint plugin enforcing the component registry: no raw hex, no arbitrary Tailwind, registry-only props (incl. enum allowedValues).",
   "license": "MIT",

@@ -1,5 +1,15 @@
 # @scottmallin/nuxt
 
+## 0.1.1
+
+### Patch Changes
+
+- Maintenance release. No runtime changes to the packages; exercises the automated
+  GitHub Actions publish pipeline (publish on GitHub Release, with provenance).
+- Updated dependencies
+  - @scottmallin/tokens@0.1.1
+  - @scottmallin/vue@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes

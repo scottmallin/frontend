@@ -1,6 +1,6 @@
 {
   "name": "@scottmallin/tokens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "DTCG design tokens for the nova & ember demo modes, built via Style Dictionary to CSS custom properties + a NativeWind-compatible preset.",
   "license": "MIT",
