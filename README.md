@@ -113,10 +113,16 @@ pnpm dev         # open the playground
 ## Outcome
 
 The result is a system where the guard-rails are structural, not aspirational: a new
-contributor — or an AI agent following [`CLAUDE.md`](CLAUDE.md) / the
-[Cursor rules](.cursor/rules/design-system.mdc) — gets immediate, specific feedback when
-they step outside the system, and the same JSON that documents the API is the thing that
-enforces it.
+contributor — or an AI agent following [`AGENTS.md`](AGENTS.md) (the tool-agnostic contract;
+[`CLAUDE.md`](CLAUDE.md) and the [Cursor rules](.cursor/rules/design-system.mdc) point to
+it) — gets immediate, specific feedback when they step outside the system, and the same JSON
+that documents the API is the thing that enforces it.
+
+**Designing new components or a whole new palette?** Start with
+[Designing for the registry](docs/designing-for-the-registry.md) — how to shape Figma
+variables and components so a design ingests into these packages with zero translation loss
+(Figma is the source of truth for values; the `nova`/`ember` tokens here are demo data to
+replace wholesale).
 
 ## Known limitations
 

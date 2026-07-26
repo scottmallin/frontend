@@ -1,4 +1,5 @@
 {
+  "$description": "DEMO TOKENS — sample spacing/radius/shadow values for this public demo ONLY, not canonical. Replace wholesale with your own Figma-generated DTCG export. See packages/tokens/README.md and AGENTS.md.",
   "spacing": {
     "$type": "dimension",
     "control": {
