@@ -1,13 +1,16 @@
 # Publishes the @scottmallin/* packages to the public npm registry when a GitHub Release
-# is created (or on a manual dispatch). This is a pnpm monorepo, so publishing goes through
-# `pnpm -r publish` (via `pnpm release`) — NOT `npm publish`, which would leave the internal
-# `workspace:*` deps in the tarball and produce uninstallable packages.
+# is created (or on a manual dispatch).
 #
 # Auth: npm Trusted Publishing (OIDC) — NO token/secret. The `id-token: write` permission
-# lets npm mint a short-lived credential from GitHub's OIDC provider and attach build
-# provenance automatically. Requires, one-time on npmjs.com, a Trusted Publisher configured
-# for EACH package (Settings → Trusted Publisher → GitHub Actions → repo scottmallin/frontend,
-# workflow npm-publish.yml). Needs npm >= 11.5.1, which ships with Node 26.
+# lets `npm publish` mint a short-lived credential from GitHub's OIDC provider and attach
+# build provenance automatically. Requires, one-time on npmjs.com, a Trusted Publisher
+# configured for EACH package (Settings → Trusted Publisher → GitHub Actions → repo
+# scottmallin/frontend, workflow npm-publish.yml). Node 26 ships npm 11.17 (>= 11.5.1 OIDC).
+#
+# Why pack-then-publish (not `pnpm publish`): pnpm performs the registry upload with its own
+# client, which does NOT run npm's OIDC exchange, so it 404s with the empty token. So we pack
+# with pnpm — which rewrites the internal `workspace:*` deps to real versions and runs each
+# package's prepack build — then hand the tarballs to `npm publish`, which does OIDC + provenance.
 #
 # Release flow: `pnpm changeset` → `pnpm version-packages` → commit/merge → cut a GitHub
 # Release on the tag. All four packages share one version (changesets `fixed` group).
@@ -38,9 +41,10 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    environment: Build # must match the Environment set on each package's npm Trusted Publisher
     permissions:
       contents: read
-      id-token: write # OIDC: mints the npm Trusted Publishing credential (no secret needed)
+      id-token: write # OIDC: lets `npm publish` mint the Trusted Publishing credential
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -50,8 +54,17 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org/ # targets npmjs + enables the OIDC exchange
       - run: pnpm install --frozen-lockfile
-      # `pnpm release` runs scripts/release.mjs → `pnpm -r publish --access public
-      # --no-git-checks`, rebuilding each package via its prepack, rewriting workspace deps,
-      # and skipping private/already-published packages. npm authenticates via the OIDC
-      # id-token above and adds provenance automatically — no NODE_AUTH_TOKEN.
-      - run: pnpm release
+      - name: Pack packages (pnpm rewrites workspace:* and runs each prepack)
+        run: |
+          mkdir -p "$RUNNER_TEMP/tarballs"
+          for dir in packages/core packages/tokens packages/vue packages/nuxt; do
+            ( cd "$dir" && pnpm pack --pack-destination "$RUNNER_TEMP/tarballs" )
+          done
+      - name: Publish tarballs via OIDC Trusted Publishing
+        run: |
+          shopt -s nullglob
+          for tarball in "$RUNNER_TEMP"/tarballs/*.tgz; do
+            echo "::group::npm publish $(basename "$tarball")"
+            npm publish "$tarball" --access public --provenance
+            echo "::endgroup::"
+          done
