@@ -1,4 +1,5 @@
 {
+  "$description": "DEMO TOKENS — the `nova` and `ember` mode values below are sample data for this public demo ONLY. They are NOT canonical and must not be treated as authority. A real consumer replaces this file wholesale with their own Figma-generated DTCG export (Figma Variables -> Tokens Studio -> Style Dictionary). See packages/tokens/README.md and AGENTS.md.",
   "color": {
     "$type": "color",
     "action": {
