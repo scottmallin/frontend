@@ -1,6 +1,6 @@
 {
   "name": "@scottmallin/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Headless primitives + the component registry. registry.json is the single source of truth for both lint enforcement and generated prop types.",
   "license": "MIT",
