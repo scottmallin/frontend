@@ -1,11 +1,13 @@
 # Publishes the @scottmallin/* packages to the public npm registry when a GitHub Release
-# is created. This is a pnpm monorepo, so publishing goes through `pnpm -r publish`
-# (via `pnpm release`) — NOT `npm publish`, which would leave the internal `workspace:*`
-# deps in the tarball and produce uninstallable packages.
+# is created (or on a manual dispatch). This is a pnpm monorepo, so publishing goes through
+# `pnpm -r publish` (via `pnpm release`) — NOT `npm publish`, which would leave the internal
+# `workspace:*` deps in the tarball and produce uninstallable packages.
 #
-# Required repo secret: NPM_TOKEN — a granular access token (Read and write, scoped to
-# @scottmallin) or a classic Automation token. It must BYPASS 2FA; a plain `npm login`
-# token 403s on publish. Add it under Settings → Secrets and variables → Actions.
+# Auth: npm Trusted Publishing (OIDC) — NO token/secret. The `id-token: write` permission
+# lets npm mint a short-lived credential from GitHub's OIDC provider and attach build
+# provenance automatically. Requires, one-time on npmjs.com, a Trusted Publisher configured
+# for EACH package (Settings → Trusted Publisher → GitHub Actions → repo scottmallin/frontend,
+# workflow npm-publish.yml). Needs npm >= 11.5.1, which ships with Node 26.
 #
 # Release flow: `pnpm changeset` → `pnpm version-packages` → commit/merge → cut a GitHub
 # Release on the tag. All four packages share one version (changesets `fixed` group).
@@ -15,6 +17,7 @@ name: Node.js Package
 on:
   release:
     types: [created]
+  workflow_dispatch: {} # manual publish, e.g. to re-run after a fix
 
 jobs:
   build:
@@ -37,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write # enables npm provenance (remove this and --provenance below if unwanted)
+      id-token: write # OIDC: mints the npm Trusted Publishing credential (no secret needed)
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -45,11 +48,10 @@ jobs:
         with:
           node-version: 26
           cache: pnpm
-          registry-url: https://registry.npmjs.org/ # writes ~/.npmrc auth line for NODE_AUTH_TOKEN
+          registry-url: https://registry.npmjs.org/ # targets npmjs + enables the OIDC exchange
       - run: pnpm install --frozen-lockfile
       # `pnpm release` runs scripts/release.mjs → `pnpm -r publish --access public
-      # --no-git-checks`, rebuilding each package via its prepack. `--provenance` attaches a
-      # signed build attestation (needs id-token: write above).
-      - run: pnpm release -- --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # --no-git-checks`, rebuilding each package via its prepack, rewriting workspace deps,
+      # and skipping private/already-published packages. npm authenticates via the OIDC
+      # id-token above and adds provenance automatically — no NODE_AUTH_TOKEN.
+      - run: pnpm release
