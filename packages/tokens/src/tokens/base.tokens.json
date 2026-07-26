@@ -1,0 +1,33 @@
+{
+  "spacing": {
+    "$type": "dimension",
+    "control": {
+      "sm": { "$value": { "value": 0.5, "unit": "rem" }, "$description": "Compact control padding." },
+      "md": { "$value": { "value": 0.75, "unit": "rem" }, "$description": "Default control padding." },
+      "lg": { "$value": { "value": 1, "unit": "rem" }, "$description": "Roomy control padding." }
+    },
+    "card": {
+      "padding": { "$value": { "value": 1.5, "unit": "rem" } },
+      "gap": { "$value": { "value": 1, "unit": "rem" } }
+    },
+    "stack": {
+      "sm": { "$value": { "value": 0.5, "unit": "rem" } },
+      "md": { "$value": { "value": 1, "unit": "rem" } }
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "control": { "$value": { "value": 0.5, "unit": "rem" } },
+    "card": { "$value": { "value": 0.875, "unit": "rem" } },
+    "badge": { "$value": { "value": 9999, "unit": "px" } },
+    "modal": { "$value": { "value": 1, "unit": "rem" } }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "elevation": {
+      "flat": { "$value": "none" },
+      "raised": { "$value": "0 1px 2px 0 rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.12)" },
+      "overlay": { "$value": "0 12px 32px -8px rgba(0, 0, 0, 0.36)" }
+    }
+  }
+}

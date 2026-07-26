@@ -29,7 +29,7 @@ A pnpm + Turborepo monorepo:
 
 | Package | Role |
 | --- | --- |
-| [`packages/tokens`](packages/tokens) | Design tokens (Style Dictionary v5) → CSS custom properties + a NativeWind preset. Two brand themes: `nova` (dark), `ember` (light). |
+| [`packages/tokens`](packages/tokens) | **DTCG** design tokens (Style Dictionary v5) → CSS custom properties + a NativeWind preset. Ingests OKLCH objects, dimensions, aliases, and `$extensions.mode` theming. Two modes: `nova` (dark), `ember` (light). |
 | [`packages/core`](packages/core) | Headless primitives **and the registry** (`registry.json` + schema). Generates prop types from the registry. |
 | [`packages/vue`](packages/vue) | Vue 3 SFC wrappers. Props typed from the registry; styling is token-backed Tailwind utilities only. |
 | [`packages/nuxt`](packages/nuxt) | Thin Nuxt module that auto-imports the components and registers the token CSS. |

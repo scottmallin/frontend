@@ -1,8 +1,0 @@
-{
-  "radius": {
-    "control": { "value": "0.5rem" },
-    "card": { "value": "0.875rem" },
-    "badge": { "value": "9999px" },
-    "modal": { "value": "1rem" }
-  }
-}

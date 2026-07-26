@@ -3,16 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Design tokens for the nova & ember demo brands. Figma-style source JSON built via Style Dictionary to CSS custom properties + a NativeWind-compatible preset.",
+  "description": "DTCG design tokens for the nova & ember demo modes, built via Style Dictionary to CSS custom properties + a NativeWind-compatible preset.",
   "license": "MIT",
   "exports": {
     "./css": "./dist/css/tokens.css",
     "./nativewind": "./dist/nativewind/preset.cjs",
     "./package.json": "./package.json"
   },
-  "files": ["dist", "src"],
+  "files": ["dist", "src", "lib"],
   "scripts": {
     "build": "node scripts/build-tokens.mjs",
+    "test": "node --test",
     "lint": "eslint .",
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
   },

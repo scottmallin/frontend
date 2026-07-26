@@ -1,0 +1,55 @@
+{
+  "color": {
+    "$type": "color",
+    "action": {
+      "primary": {
+        "bg": { "$value": "#3B5BDB", "$extensions": { "mode": { "nova": "#3B5BDB", "ember": "#E8590C" } } },
+        "bg-hover": { "$value": "#364FC7", "$extensions": { "mode": { "nova": "#364FC7", "ember": "#D9480F" } } },
+        "fg": { "$value": "#FFFFFF", "$extensions": { "mode": { "nova": "#FFFFFF", "ember": "#FFFFFF" } } }
+      },
+      "secondary": {
+        "bg": { "$value": "#20242E", "$extensions": { "mode": { "nova": "#20242E", "ember": "#F6E7DA" } } },
+        "bg-hover": { "$value": "#2A2F3B", "$extensions": { "mode": { "nova": "#2A2F3B", "ember": "#EFD8C4" } } },
+        "fg": { "$value": "#C9D2EA", "$extensions": { "mode": { "nova": "#C9D2EA", "ember": "#8A3B08" } } }
+      },
+      "danger": {
+        "bg": { "$value": "#E03131", "$extensions": { "mode": { "nova": "#E03131", "ember": "#C92A2A" } } },
+        "bg-hover": { "$value": "#C92A2A", "$extensions": { "mode": { "nova": "#C92A2A", "ember": "#B02525" } } },
+        "fg": { "$value": "#FFFFFF", "$extensions": { "mode": { "nova": "#FFFFFF", "ember": "#FFFFFF" } } }
+      }
+    },
+    "surface": {
+      "base": { "$value": "#0B0C0E", "$extensions": { "mode": { "nova": "#0B0C0E", "ember": "#FBF7F2" } } },
+      "raised": { "$value": "#15171B", "$extensions": { "mode": { "nova": "#15171B", "ember": "#FFFFFF" } } },
+      "overlay": { "$value": "#1D2026", "$extensions": { "mode": { "nova": "#1D2026", "ember": "#FFFFFF" } } },
+      "border": { "$value": "#2A2E37", "$extensions": { "mode": { "nova": "#2A2E37", "ember": "#E7DBCC" } } }
+    },
+    "text": {
+      "default": { "$value": "#F5F6F8", "$extensions": { "mode": { "nova": "#F5F6F8", "ember": "#1A1614" } } },
+      "muted": { "$value": "#A5ADBB", "$extensions": { "mode": { "nova": "#A5ADBB", "ember": "#6F6157" } } },
+      "on-action": { "$value": "#FFFFFF", "$extensions": { "mode": { "nova": "#FFFFFF", "ember": "#FFFFFF" } } }
+    },
+    "scrim": {
+      "$value": "rgba(0, 0, 0, 0.6)",
+      "$extensions": { "mode": { "nova": "rgba(0, 0, 0, 0.6)", "ember": "rgba(0, 0, 0, 0.4)" } }
+    },
+    "feedback": {
+      "info": {
+        "bg": { "$value": "#16324A", "$extensions": { "mode": { "nova": "#16324A", "ember": "#E5F0FA" } } },
+        "fg": { "$value": "#A9D2F5", "$extensions": { "mode": { "nova": "#A9D2F5", "ember": "#1B5A8A" } } }
+      },
+      "success": {
+        "bg": { "$value": "#123521", "$extensions": { "mode": { "nova": "#123521", "ember": "#E6F5EC" } } },
+        "fg": { "$value": "#8CE0A9", "$extensions": { "mode": { "nova": "#8CE0A9", "ember": "#1B7A42" } } }
+      },
+      "warning": {
+        "bg": { "$value": "#3A3216", "$extensions": { "mode": { "nova": "#3A3216", "ember": "#FCF2DA" } } },
+        "fg": { "$value": "#F2D479", "$extensions": { "mode": { "nova": "#F2D479", "ember": "#8A6416" } } }
+      },
+      "danger": {
+        "bg": { "$value": "#3A1A1A", "$extensions": { "mode": { "nova": "#3A1A1A", "ember": "#FBE8E8" } } },
+        "fg": { "$value": "#F3A9A9", "$extensions": { "mode": { "nova": "#F3A9A9", "ember": "#B02525" } } }
+      }
+    }
+  }
+}
