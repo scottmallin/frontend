@@ -1,0 +1,55 @@
+# Publishes the @scottmallin/* packages to the public npm registry when a GitHub Release
+# is created. This is a pnpm monorepo, so publishing goes through `pnpm -r publish`
+# (via `pnpm release`) — NOT `npm publish`, which would leave the internal `workspace:*`
+# deps in the tarball and produce uninstallable packages.
+#
+# Required repo secret: NPM_TOKEN — a granular access token (Read and write, scoped to
+# @scottmallin) or a classic Automation token. It must BYPASS 2FA; a plain `npm login`
+# token 403s on publish. Add it under Settings → Secrets and variables → Actions.
+#
+# Release flow: `pnpm changeset` → `pnpm version-packages` → commit/merge → cut a GitHub
+# Release on the tag. All four packages share one version (changesets `fixed` group).
+
+name: Node.js Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4 # reads the packageManager field in package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26 # matches the volta.node pin; engines requires >=24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm lint
+      - run: pnpm lint:expect-violations # asserts examples/bad still fails
+      - run: pnpm test
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # enables npm provenance (remove this and --provenance below if unwanted)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: pnpm
+          registry-url: https://registry.npmjs.org/ # writes ~/.npmrc auth line for NODE_AUTH_TOKEN
+      - run: pnpm install --frozen-lockfile
+      # `pnpm release` runs scripts/release.mjs → `pnpm -r publish --access public
+      # --no-git-checks`, rebuilding each package via its prepack. `--provenance` attaches a
+      # signed build attestation (needs id-token: write above).
+      - run: pnpm release -- --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
